@@ -4,7 +4,7 @@ pipeline {
     stages {
       stage("Build") {
         steps {
-          sh "docker run -v /var/run/docker.sock:/var/run/docker.sock ..."
+          sh "-v $(which docker):/usr/bin/docker"
           sh "docker images -a"
           sh (script: """
             cd azure-vote/
