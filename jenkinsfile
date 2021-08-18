@@ -4,8 +4,14 @@ pipeline {
     stages {
       stage("Build") {
         steps {
-          echo "Building an App"
-          echo $GIT_BRANCH
+          sh(script: 'docker images -a')
+          sh(script: """
+            cd azure-vote/
+            docker images -a
+            docker build -t jenkins-pipeline .
+            docker images -a
+            cd ..
+          """)
         }
       }
       stage("Test") {
