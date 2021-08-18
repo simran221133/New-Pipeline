@@ -4,6 +4,7 @@ pipeline {
     stages {
       stage("Build") {
         steps {
+          sh "echo $PATH"
           sh "docker images -a"
           sh (script: """
             cd azure-vote/
